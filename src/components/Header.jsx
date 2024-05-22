@@ -1,6 +1,7 @@
 import logo from "/src/assets/logo.png";
 
 import {
+  Divider,
   Flex,
   HStack,
   Input,
@@ -26,6 +27,7 @@ function Header() {
           <Input type="text" placeholder="Search" width="359px" />
         </InputGroup>
       </Flex>
+      <Divider />
     </>
   );
 }
