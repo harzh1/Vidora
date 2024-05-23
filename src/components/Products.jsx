@@ -66,7 +66,24 @@ function Products({ products }) {
 }
 
 Products.propTypes = {
-  products: PropTypes.arrayOf(),
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      description: PropTypes.string,
+      images: PropTypes.arrayOf(PropTypes.string),
+      creationAt: PropTypes.string,
+      updatedAt: PropTypes.string,
+      category: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        image: PropTypes.string,
+        creationAt: PropTypes.string,
+        updatedAt: PropTypes.string,
+      }),
+    })
+  ).isRequired,
 };
 
 export default Products;

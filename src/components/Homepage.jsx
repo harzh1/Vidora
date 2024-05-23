@@ -47,7 +47,7 @@ const Homepage = () => {
       <Products products={loading ? products : tempProducts} />
       <Pagination
         currentPage={currPage}
-        totalPages="3"
+        totalPages={3}
         onPageChange={onPageChange}
       />
     </>

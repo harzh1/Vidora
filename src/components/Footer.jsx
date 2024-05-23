@@ -12,7 +12,7 @@ import logo from "../assets/logo.png";
 function Footer() {
   return (
     <footer>
-      <Flex p="50" backgroundColor="#e9f0f4" justifyContent="space-around">
+      <Flex p="50" backgroundColor="#e9f0f4" justifyContent="space-between">
         <Stack>
           <HStack>
             <Image className="logo-img" src={logo} alt="logo" />
@@ -45,7 +45,7 @@ function Footer() {
           <Text fontSize="sm">Privacy Policy</Text>
           <Text fontSize="sm">Terms and Conditions</Text>
         </Stack>
-        <Stack display="flex" gap={5} alignItems="flex-start">
+        <Stack display="flex" gap={5} alignItems="flex-start" mr="7">
           <Text as="b" fontSize="sm">
             Follow Us
           </Text>
