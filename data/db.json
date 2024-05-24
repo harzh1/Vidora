@@ -44,8 +44,8 @@
         "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1716034152_4966548.jpg?format=webp&w=300&dpr=2.0",
         "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1716034152_5161047.jpg?format=webp&w=300&dpr=2.0"
       ],
-      "price": 199.99,
-      "mrp": 299.99,
+      "price": 199,
+      "mrp": 299,
       "ratings": {
         "average": 4.3,
         "total": 120

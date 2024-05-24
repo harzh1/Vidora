@@ -73,11 +73,15 @@ function Product() {
 
   const handleUpClick = () => {
     setImageIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    setCurrentImage((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
   const handleDownClick = () => {
     setImageIndex((prevIndex) =>
       Math.min(prevIndex + 1, product.images.length - 3)
+    );
+    setCurrentImage((prevIndex) =>
+      Math.min(prevIndex + 1, product.images.length - 1)
     );
   };
 
@@ -106,17 +110,18 @@ function Product() {
               onClick={handleUpClick}
               variant="ghost"
             />
-            {product.images
-              .slice(imageIndex, imageIndex + 3)
-              .map((img, index) => (
-                <Image
-                  key={product.id + "child" + index}
-                  src={img}
-                  alt={product.title}
-                  onClick={() => setCurrentImage(index)}
-                  outline={currentImage === index ? "2px solid black" : ""}
-                />
-              ))}
+            {product.images.map((img, index) => (
+              <Image
+                key={product.id + "child" + index}
+                src={img}
+                alt={product.title}
+                onClick={() => setCurrentImage(index)}
+                outline={currentImage === index ? "2px solid black" : ""}
+                display={
+                  index < imageIndex || index >= imageIndex + 3 ? "none" : ""
+                }
+              />
+            ))}
             <IconButton
               w="fit-content"
               aria-label="Next"
