@@ -21,6 +21,7 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import {
   ChevronDown,
@@ -31,11 +32,25 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Product() {
   const [currentImage, setCurrentImage] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
+  const gridTemp = useBreakpointValue({
+    base: "repeat(1, 1fr)",
+    sm: "repeat(1, 1fr)",
+    md: "repeat(2, 1fr)",
+    lg: "repeat(2, 1fr)",
+  });
+
+  const displayValue = useBreakpointValue({
+    base: "none",
+    sm: "none",
+    md: "flex",
+    lg: "flex",
+  });
+
   const { id } = useParams();
   console.log(id);
 
@@ -100,7 +115,9 @@ function Product() {
     <>
       <Breadcrumb pl="10" pr="10" pt="2" pb="2" backgroundColor="brand.ow">
         <BreadcrumbItem>
-          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+          <BreadcrumbLink as={Link} to="/">
+            Home
+          </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem>
@@ -111,9 +128,16 @@ function Product() {
           <BreadcrumbLink href="#">OverSized T-Shirt</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Grid templateColumns="repeat(2, 1fr)" gap={5} m="10" textAlign="left">
-        <Grid templateColumns="1fr 5fr">
-          <Stack pl={10} alignItems="center">
+      <Grid templateColumns={gridTemp} gap={5} m="10" textAlign="left">
+        <Grid
+          templateColumns={{
+            base: "1fr",
+            sm: "1fr",
+            md: "1fr 5fr",
+            lg: "1fr 5fr",
+          }}
+        >
+          <Stack pl={10} alignItems="center" display={displayValue}>
             <IconButton
               w="fit-content"
               aria-label="Previous"
@@ -142,15 +166,15 @@ function Product() {
             />
           </Stack>
           <Image
-            pr="10"
-            pl={10}
+            pr={{ base: 0, sm: 0, md: 10, lg: 10 }}
+            pl={{ base: 0, sm: 0, md: 10, lg: 10 }}
             src={product.images[currentImage]}
             alt={product.title}
           />
         </Grid>
         <Flex direction="column" justify="flex-start" gap="3">
           <Heading textAlign="left">{product?.title}</Heading>
-          <HStack spacing="1">
+          <HStack>
             <Badge
               variant="solid"
               colorScheme="green"
@@ -202,6 +226,7 @@ function Product() {
               borderRadius="sm"
               width="fit-content"
               pl="4"
+              pr="4"
               border="1px solid black"
             >
               <Input
@@ -224,23 +249,29 @@ function Product() {
 
           <Divider />
 
-          <ButtonGroup pr={10}>
+          <ButtonGroup
+            display="flex"
+            flexDir={{ base: "column", sm: "column", md: "row", lg: "row" }}
+          >
+            <HStack>
+              <Button
+                w="fit-content"
+                borderRadius={1}
+                leftIcon={<ShoppingCart />}
+              >
+                ADD TO CART
+              </Button>
+              <Button
+                w="fit-content"
+                variant="outline"
+                borderRadius={1}
+                leftIcon={<Heart />}
+              >
+                WISHLIST
+              </Button>
+            </HStack>
             <Button
-              w="fit-content"
-              borderRadius={1}
-              leftIcon={<ShoppingCart />}
-            >
-              ADD TO CART
-            </Button>
-            <Button
-              w="fit-content"
-              variant="outline"
-              borderRadius={1}
-              leftIcon={<Heart />}
-            >
-              WISHLIST
-            </Button>
-            <Button
+              mt={{ base: "8px", sm: "8px", md: "0", lg: "0" }}
               w="fit-content"
               colorScheme="whatsapp"
               borderRadius={1}

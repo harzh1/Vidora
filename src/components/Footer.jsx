@@ -4,26 +4,32 @@ import {
   HStack,
   Image,
   Input,
-  Stack,
+  VStack,
   Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 
 function Footer() {
+  const stackDirection = useBreakpointValue({ base: "column", md: "row" });
+
   return (
     <footer>
-      <Flex p="50" backgroundColor="#e9f0f4" justifyContent="space-between">
-        <Stack>
+      <Flex
+        p="50"
+        backgroundColor="#e9f0f4"
+        justifyContent="space-between"
+        direction={stackDirection}
+      >
+        <VStack align="start" spacing={5}>
           <HStack>
             <Image className="logo-img" src={logo} alt="logo" />
             <Text as="b" fontSize="3xl">
               Vidora
             </Text>
           </HStack>
-          <Text ml="7" fontSize="3xl">
-            Subscribe to our Email Alerts!
-          </Text>
-          <HStack ml="7">
+          <Text fontSize="xl">Subscribe to our Email Alerts!</Text>
+          <HStack>
             <Input
               borderRadius="md"
               variant="outline"
@@ -35,8 +41,8 @@ function Footer() {
               Submit
             </Button>
           </HStack>
-        </Stack>
-        <Stack display="flex" gap={5} alignItems="flex-start">
+        </VStack>
+        <VStack align="start" spacing={5}>
           <Text as="b" fontSize="sm">
             About Us
           </Text>
@@ -44,12 +50,11 @@ function Footer() {
           <Text fontSize="sm">Contact Us</Text>
           <Text fontSize="sm">Privacy Policy</Text>
           <Text fontSize="sm">Terms and Conditions</Text>
-        </Stack>
-        <Stack display="flex" gap={5} alignItems="flex-start" mr="7">
+        </VStack>
+        <VStack align="start" spacing={5}>
           <Text as="b" fontSize="sm">
             Follow Us
           </Text>
-
           <Button colorScheme="facebook" size="sm">
             Facebook
           </Button>
@@ -59,7 +64,7 @@ function Footer() {
           <Button colorScheme="linkedin" size="sm">
             LinkedIn
           </Button>
-        </Stack>
+        </VStack>
       </Flex>
     </footer>
   );
