@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonGroup,
   Divider,
@@ -15,6 +16,11 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionIcon,
+  AccordionPanel,
 } from "@chakra-ui/react";
 import {
   ChevronDown,
@@ -36,7 +42,12 @@ function Product() {
   const [product, setProduct] = useState([]);
 
   const fetchProducts = async () => {
-    const response = await fetch(`http://localhost:3000/products/${id}`);
+    const response = await fetch(
+      `https://server-deploy-xrqa.onrender.com/products/${id}`,
+      {
+        mode: "cors",
+      }
+    );
     const data = await response.json();
     setProduct(data);
 
@@ -100,7 +111,7 @@ function Product() {
           <BreadcrumbLink href="#">OverSized T-Shirt</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Grid templateColumns="repeat(2, 1fr)" gap={5} m="10">
+      <Grid templateColumns="repeat(2, 1fr)" gap={5} m="10" textAlign="left">
         <Grid templateColumns="1fr 5fr">
           <Stack pl={10} alignItems="center">
             <IconButton
@@ -240,6 +251,87 @@ function Product() {
               INQUIRE ON WHATSAPP
             </Button>
           </ButtonGroup>
+
+          <Divider />
+
+          <Stack spacing="1">
+            <Text as="b" fontSize="md">
+              Product Description
+            </Text>
+            <p fontSize="5em">{product.description}</p>
+            <Accordion allowMultiple>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton pt="8px" pb="8px" pl={0} pr={0}>
+                    <Box as="b" flex="1" textAlign="left">
+                      Shipping & Returns
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4} pl={0} pr={0}>
+                  <Flex
+                    direction="column"
+                    backgroundColor="brand.ow"
+                    p="10px"
+                    borderRadius={1}
+                  >
+                    <b>Shipping</b>
+                    Free shipping available for orders above 500/- within India.
+                    <br />
+                    Orders dispatched every day at 4 pm except on public
+                    holidays.
+                    <br />
+                    After dispatch:
+                    <br />
+                    It takes about 2 to 5 working days for metro cities.
+                    <br />
+                    4 to 7 working days for the rest of India.
+                    <br />
+                    We ship your order from Mumbai, Maharashtra.
+                  </Flex>
+                  <br />
+                  <Flex
+                    direction="column"
+                    backgroundColor="brand.ow"
+                    p="10px"
+                    borderRadius={1}
+                  >
+                    <b>Returns</b>
+                    Returns and Exchanges available within 7 days of receiving
+                    the item/s. Returns and Exchanges of Items on sale and items
+                    below 500/- will be chargeable at Rs.150/-
+                    <br />
+                    For more details, please check our return policy here.
+                  </Flex>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton pt="8px" pb="8px" pl={0} pr={0}>
+                    <Box as="b" flex="1" textAlign="left">
+                      Specifications
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4} pl={0} pr={0}>
+                  <Flex
+                    direction="column"
+                    backgroundColor="brand.ow"
+                    p="10px"
+                    borderRadius={1}
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </Flex>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </Stack>
         </Flex>
       </Grid>
     </>

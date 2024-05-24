@@ -15,7 +15,7 @@ const Homepage = () => {
   const fetchProducts = async () => {
     setLoading(true);
     const response = await fetch(
-      `http://localhost:3000/products?_start=${offset}&_limit=${limit}`
+      `https://server-deploy-xrqa.onrender.com/products?_start=${offset}&_limit=${limit}`
     );
     const data = await response.json();
     // console.log(
@@ -49,6 +49,7 @@ const Homepage = () => {
         currentPage={currPage}
         totalPages={3}
         onPageChange={onPageChange}
+        mt="0"
       />
     </>
   );

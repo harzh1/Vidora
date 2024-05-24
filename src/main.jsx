@@ -6,6 +6,19 @@ import "./index.css";
 import { extendTheme } from "@chakra-ui/react";
 import App from "./App";
 
+import { defineStyleConfig } from "@chakra-ui/react";
+
+export const buttonTheme = defineStyleConfig({
+  defaultProps: {
+    size: "lg",
+    variant: "outline",
+    colorScheme: "brand",
+  },
+});
+
+// This saves you time, instead of manually setting the size,
+// variant and color scheme every time you use a button:
+
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
   brand: {
