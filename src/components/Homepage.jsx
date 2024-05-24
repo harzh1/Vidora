@@ -15,14 +15,14 @@ const Homepage = () => {
   const fetchProducts = async () => {
     setLoading(true);
     const response = await fetch(
-      `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`
+      `http://localhost:3000/products?_start=${offset}&_limit=${limit}`
     );
     const data = await response.json();
-    console.log(
-      offset,
-      limit,
-      `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`
-    );
+    // console.log(
+    //   offset,
+    //   limit,
+    //   `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`
+    // );
     setTempProducts(data);
     setLoading(false);
   };

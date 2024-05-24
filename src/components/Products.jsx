@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 import {
   SimpleGrid,
@@ -11,9 +12,11 @@ import {
 } from "@chakra-ui/react";
 
 function Products({ products }) {
+  const navigate = useNavigate();
+
   const handleClick = (prod) => {
     return () => {
-      console.log(prod);
+      navigate(`/prod/${prod.id}`, { state: { product: prod } });
     };
   };
 
@@ -21,7 +24,7 @@ function Products({ products }) {
     <SimpleGrid
       columns={{ base: "2", sm: "2", md: "3", lg: "4" }}
       spacing="10"
-      m="20px"
+      m="25px"
       minHeight={"100vh"}
     >
       {products.map((product) => (
@@ -49,13 +52,17 @@ function Products({ products }) {
             </Text>
             <HStack mt="6" spacing="1" alignItems="baseline">
               <Text as="b" color="brand.dark" fontSize="2xl">
-                ${product.price}
+                ₹{product.price}
               </Text>
               <Text as="del" color="gray.400" fontSize="1xl">
-                ${parseInt(product.price * 1.33)}
+                ₹{product?.mrp || 0}
               </Text>
               <Text as="b" color="green.400" fontSize="1xl">
-                25% off
+                {product?.mrp
+                  ? `${Math.floor(
+                      ((product.mrp - product.price) / product.mrp) * 100
+                    )}% off`
+                  : ""}
               </Text>
             </HStack>
           </CardFooter>
@@ -68,19 +75,15 @@ function Products({ products }) {
 Products.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       title: PropTypes.string,
-      price: PropTypes.number,
       description: PropTypes.string,
       images: PropTypes.arrayOf(PropTypes.string),
-      creationAt: PropTypes.string,
-      updatedAt: PropTypes.string,
-      category: PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        image: PropTypes.string,
-        creationAt: PropTypes.string,
-        updatedAt: PropTypes.string,
+      price: PropTypes.number,
+      mrp: PropTypes.number,
+      ratings: PropTypes.shape({
+        average: PropTypes.number,
+        total: PropTypes.number,
       }),
     })
   ).isRequired,

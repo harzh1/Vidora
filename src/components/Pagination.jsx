@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
   return (
-    <Box display="flex" justifyContent="center" padding="10px">
+    <Box display="flex" justifyContent="center" padding="10px" pt={0}>
       {Array.from({ length: totalPages }, (_, i) => (
         <Button
           key={i}

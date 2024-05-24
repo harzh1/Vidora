@@ -3,15 +3,22 @@ import "./App.css";
 import Homepage from "./components/Homepage";
 import Footer from "./components/Footer";
 import { Divider } from "@chakra-ui/react";
-// import Product from "./components/Product";
+import Product from "./components/Product";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Header />
-      <Homepage />
-      <Divider />
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/prod/:id" element={<Product />} />
+        </Routes>
+
+        <Divider />
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }
