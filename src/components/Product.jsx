@@ -177,6 +177,7 @@ function Product() {
             pl={{ base: 0, sm: 0, md: 0, lg: 10 }}
             src={product.images[currentImage]}
             alt={product.title}
+            maxH="600px"
           />
         </Grid>
         <Flex direction="column" justify="flex-start" gap="3">
@@ -255,11 +256,7 @@ function Product() {
 
           <Divider />
 
-          <ButtonGroup
-            display="flex"
-            flexDir={{ base: "column", sm: "column", md: "row", lg: "row" }}
-            flexWrap="wrap"
-          >
+          <ButtonGroup display="flex" flexWrap="wrap">
             <Button
               mt="5px"
               mb="5px"
