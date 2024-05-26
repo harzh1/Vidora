@@ -149,13 +149,20 @@ function Product() {
           }}
           justifyItems="center"
         >
-          <Stack pl={10} alignItems="center" display={displayValue}>
+          <Flex
+            alignItems="center"
+            display="flex"
+            direction={{ base: "row", sm: "row", md: "row", lg: "column" }}
+            gap="2"
+            overflow="auto"
+          >
             <IconButton
               w="fit-content"
               aria-label="Previous"
               icon={<ChevronUp />}
               onClick={handleUpClick}
               variant="ghost"
+              display={displayValue}
             />
             {product.images.map((img, index) => (
               <Image
@@ -163,10 +170,15 @@ function Product() {
                 src={img}
                 alt={product.title}
                 onClick={() => setCurrentImage(index)}
-                outline={currentImage === index ? "2px solid black" : ""}
+                border={
+                  currentImage === index
+                    ? { base: "", sm: "", md: "", lg: "2px solid black" }
+                    : ""
+                }
                 display={
                   index < imageIndex || index >= imageIndex + 3 ? "none" : ""
                 }
+                maxH="600px"
               />
             ))}
             <IconButton
@@ -175,14 +187,16 @@ function Product() {
               icon={<ChevronDown />}
               onClick={handleDownClick}
               variant="ghost"
+              display={displayValue}
             />
-          </Stack>
+          </Flex>
           <Image
             pr={{ base: 0, sm: 0, md: 0, lg: 10 }}
             pl={{ base: 0, sm: 0, md: 0, lg: 10 }}
             src={product.images[currentImage]}
             alt={product.title}
             maxH="600px"
+            display={displayValue}
           />
         </Grid>
         <Flex direction="column" justify="flex-start" gap="3">

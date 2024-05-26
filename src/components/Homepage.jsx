@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-
 import Pagination from "./Pagination";
 import Products from "./Products";
+import { Flex, Heading, Spinner } from "@chakra-ui/react";
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
@@ -44,13 +44,39 @@ const Homepage = () => {
 
   return (
     <>
-      <Products products={loading ? products : tempProducts} />
-      <Pagination
-        currentPage={currPage}
-        totalPages={3}
-        onPageChange={onPageChange}
-        mt="0"
-      />
+      {loading ? (
+        <Flex
+          minH="100vh"
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          gap={4}
+        >
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+          <Heading>
+            Loading data, this may take up to 50 seconds for the first time...
+            <br />
+            Due to the free hosting service, the server may go to sleep after 30
+            minutes of inactivity.
+          </Heading>
+        </Flex>
+      ) : (
+        <>
+          <Products products={loading ? products : tempProducts} />
+          <Pagination
+            currentPage={currPage}
+            totalPages={3}
+            onPageChange={onPageChange}
+            mt="0"
+          />
+        </>
+      )}
     </>
   );
 };

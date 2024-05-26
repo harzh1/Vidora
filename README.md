@@ -21,8 +21,8 @@ Vidora is an ecommerce website that aims to provide a seamless shopping experien
 1. Named it - Vidora
 2. Planned the structure to create using ReactJs and Vite with EsLint and others.
 3. For designing UI, I took inspiration from some websites.
-4. Icons are from Lucid [text](https://lucide.dev/)
-5. Styling is done using Chakra UI v2 [text](https://v2.chakra-ui.com/)
+4. Icons are from [Lucid](https://lucide.dev/)
+5. Styling is done using [Chakra UI v2](https://v2.chakra-ui.com/)
 6. For data : [db.json file](https://server-deploy-xrqa.onrender.com/products) is hosted on render.com
 
 ### Installation
