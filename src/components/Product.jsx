@@ -40,14 +40,14 @@ function Product() {
   const gridTemp = useBreakpointValue({
     base: "repeat(1, 1fr)",
     sm: "repeat(1, 1fr)",
-    md: "repeat(2, 1fr)",
-    lg: "repeat(2, 1fr)",
+    md: "repeat(1, 1fr)",
+    lg: "1fr 1fr",
   });
 
   const displayValue = useBreakpointValue({
     base: "none",
     sm: "none",
-    md: "flex",
+    md: "none",
     lg: "flex",
   });
 
@@ -133,9 +133,16 @@ function Product() {
           templateColumns={{
             base: "1fr",
             sm: "1fr",
-            md: "1fr 5fr",
+            md: "1fr ",
             lg: "1fr 5fr",
           }}
+          alignItems={{
+            base: "center",
+            sm: "center",
+            md: "center",
+            lg: "start",
+          }}
+          justifyItems="center"
         >
           <Stack pl={10} alignItems="center" display={displayValue}>
             <IconButton
@@ -166,8 +173,8 @@ function Product() {
             />
           </Stack>
           <Image
-            pr={{ base: 0, sm: 0, md: 10, lg: 10 }}
-            pl={{ base: 0, sm: 0, md: 10, lg: 10 }}
+            pr={{ base: 0, sm: 0, md: 0, lg: 10 }}
+            pl={{ base: 0, sm: 0, md: 0, lg: 10 }}
             src={product.images[currentImage]}
             alt={product.title}
           />
@@ -226,7 +233,6 @@ function Product() {
               borderRadius="sm"
               width="fit-content"
               pl="4"
-              pr="4"
               border="1px solid black"
             >
               <Input
@@ -252,26 +258,31 @@ function Product() {
           <ButtonGroup
             display="flex"
             flexDir={{ base: "column", sm: "column", md: "row", lg: "row" }}
+            flexWrap="wrap"
           >
-            <HStack>
-              <Button
-                w="fit-content"
-                borderRadius={1}
-                leftIcon={<ShoppingCart />}
-              >
-                ADD TO CART
-              </Button>
-              <Button
-                w="fit-content"
-                variant="outline"
-                borderRadius={1}
-                leftIcon={<Heart />}
-              >
-                WISHLIST
-              </Button>
-            </HStack>
             <Button
-              mt={{ base: "8px", sm: "8px", md: "0", lg: "0" }}
+              mt="5px"
+              mb="5px"
+              w="fit-content"
+              borderRadius={1}
+              leftIcon={<ShoppingCart />}
+            >
+              ADD TO CART
+            </Button>
+            <Button
+              mt="5px"
+              mb="5px"
+              w="fit-content"
+              variant="outline"
+              borderRadius={1}
+              leftIcon={<Heart />}
+            >
+              WISHLIST
+            </Button>
+
+            <Button
+              mt="5px"
+              mb="5px"
               w="fit-content"
               colorScheme="whatsapp"
               borderRadius={1}
