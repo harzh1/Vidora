@@ -176,7 +176,9 @@ function Product() {
                     : ""
                 }
                 display={
-                  index < imageIndex || index >= imageIndex + 3 ? "none" : ""
+                  index < imageIndex || index >= imageIndex + 3
+                    ? { base: "", sm: "", md: "", lg: "none" }
+                    : ""
                 }
                 maxH="600px"
               />
