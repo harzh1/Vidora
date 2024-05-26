@@ -128,7 +128,12 @@ function Product() {
           <BreadcrumbLink href="#">OverSized T-Shirt</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Grid templateColumns={gridTemp} gap={5} m="10" textAlign="left">
+      <Grid
+        templateColumns={gridTemp}
+        gap={5}
+        m={{ base: "20px", sm: "20px", md: "8", lg: "10" }}
+        textAlign="left"
+      >
         <Grid
           templateColumns={{
             base: "1fr",
